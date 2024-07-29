@@ -1,15 +1,19 @@
-package utils;
+package Restutils;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class RestUtils {
 
+//    public RequestSpecification getRequestSpecification(String e)
 
-    public static Response performPost(String endpoint, String payload, HashMap<String,String> headers){
+
+    public static Response performPost(String endpoint, String payload, Map<String,String> headers){
 
         return RestAssured.given().baseUri(endpoint).log().all()
                 .contentType(ContentType.JSON)
@@ -20,7 +24,7 @@ public class RestUtils {
 
     }
 
-    public static Response performPost(String endpoint, HashMap<String,Object> payload, HashMap<String,String> headers){
+    public static Response performPost(String endpoint, Map<String,Object> payload, Map<String,String> headers){
 
         return RestAssured.given().baseUri(endpoint).log().all()
                 .contentType(ContentType.JSON)

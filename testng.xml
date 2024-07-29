@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Thishara.INCHEL-1MGTRN3/Framework/NaveenRestAssuredFramework/src/test/java/airlines/AirlineTest.java">
+        <classes>
+            <class name="airlines.AirlineTest">
+                <methods>
+                    <include name="createAirline"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
