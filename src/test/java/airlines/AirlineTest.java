@@ -9,8 +9,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Payload.airlinePayload.getAirlinePayload;
-import static Payload.airlinePayload.getAirlinePayloadFromMap;
+import static Payload.airlinePayload.*;
 import static utils.JsonUtils.getJsonDataAsMap;
 
 public class AirlineTest extends AirlineAPIs{
@@ -40,14 +39,21 @@ public class AirlineTest extends AirlineAPIs{
 //
 ////        Response response = RestUtils.performPost(endpoint,payload, new HashMap<>());
 ////        e
-        HashMap<String, Object> payloadmap = getAirlinePayloadFromMap("1234578","Sri Lankan Airways","Sri Lanka","https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png",
-                "From Sri Lanka","Mumbai","www.srilankaaairways.com","1990");
+//        HashMap<String, Object> payloadmap = getAirlinePayloadFromMap("1234578","Sri Lankan Airways","Sri Lanka","https://upload.wikimedia.org/wikipedia/en/thumb/9/9b/Qatar_Airways_Logo.svg/sri_lanka.png",
+//                "From Sri Lanka","Mumbai","www.srilankaaairways.com","1990");
+////
+////        Response response1 = RestUtils.performPost(endpoint,payloadmap, new HashMap<>());
+////        Assert.assertEquals(response1.statusCode(),200);
 //
-//        Response response1 = RestUtils.performPost(endpoint,payloadmap, new HashMap<>());
-//        Assert.assertEquals(response1.statusCode(),200);
+//        Response response = createAirline(payloadmap);
+//        Assert.assertEquals(response.statusCode(),2000);
 
-        Response response = createAirline(payloadmap);
+        Map<String, Object> payload = getCreateAirlinePayloadFromMap();
+
+        Response response = createAirline(payload);
         Assert.assertEquals(response.statusCode(),200);
+
+
 
 
 

@@ -1,6 +1,10 @@
 package Payload;
 
+import net.datafaker.Faker;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class airlinePayload {
 
@@ -42,5 +46,19 @@ public class airlinePayload {
 
 
 
+    }
+
+    public static Map<String, Object> getCreateAirlinePayloadFromMap() {
+        Faker faker = new Faker();
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("id", faker.number().digits(10));
+        payload.put("name", faker.name().firstName());
+        payload.put("country", faker.address().country());
+        payload.put("logo", RandomStringUtils.randomAlphanumeric(20));
+        payload.put("slogan",RandomStringUtils.randomAlphanumeric(20));
+        payload.put("head_quaters",faker.address().cityName());
+        payload.put("website", "https://"+RandomStringUtils.randomAlphanumeric(10)+".com");
+        payload.put("established", faker.number().numberBetween(1980,2023));
+        return payload;
     }
 }
