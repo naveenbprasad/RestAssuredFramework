@@ -9,7 +9,8 @@
         <classes>
             <class name="airlines.AirlineTest">
                 <methods>
-                    <include name="createAirline"/>
+<!--                    <include name="createAirline"/>-->
+                    <include name="createAirlineAndVerifyResponse"/>
                 </methods>
             </class>
         </classes>

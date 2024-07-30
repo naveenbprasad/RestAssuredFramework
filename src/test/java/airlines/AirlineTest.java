@@ -1,6 +1,8 @@
 package airlines;
 
 import airlines.pojos.Airline;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -54,7 +56,15 @@ public class AirlineTest extends AirlineAPIs{
 //        Response response = createAirline(payload);
 //        Assert.assertEquals(response.statusCode(),200);
 
-        Airline airline = getCreateAirlinePayloadFromPojo();
+//        // to run from pojo
+//        Airline airline = getCreateAirlinePayloadFromPojo();
+//
+//        Response response = createAirline(airline);
+//        Assert.assertEquals(response.statusCode(),200);
+
+
+        // to run from pojo with default values
+        Airline airline = new Airline().toBuilder().name("naveen").build();
 
         Response response = createAirline(airline);
         Assert.assertEquals(response.statusCode(),200);
@@ -62,6 +72,21 @@ public class AirlineTest extends AirlineAPIs{
 
 
 
+    }
+
+    @Test
+    public void createAirlineAndVerifyResponse() throws IOException {
+        Airline airline = new Airline();
+        Response response =createAirline(airline);
+
+//        Way 1
+        Assert.assertEquals(response.jsonPath().getString("name"),airline.getName());
+        ObjectMapper mapper = new ObjectMapper();
+        Airline airlineresponse = mapper.readValue(response.getBody().asString(),Airline.class);
+
+        System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(airline));
+
+        Assert.assertEquals(airline,airlineresponse);
 
     }
 }

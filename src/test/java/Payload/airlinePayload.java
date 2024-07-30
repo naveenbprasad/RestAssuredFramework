@@ -66,7 +66,7 @@ public class airlinePayload {
     }
 
        public static Airline getCreateAirlinePayloadFromPojo(){
-           Airline airline=  Airline.builder().id(Integer.parseInt(RandomDataGenerator.getRandomNumber(10)))
+           Airline airline=  Airline.builder().id(RandomDataGenerator.getRandomNumber(10))
                    .name( RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.FIRSTNAME))
                    .country(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.COUNTRY))
                    .head_quaters(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.CITYNAME))
