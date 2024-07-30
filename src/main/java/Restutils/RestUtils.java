@@ -56,4 +56,12 @@ public class RestUtils {
         printResponseLogInReport(response);
         return response;
     }
+
+    public static Response performPost(String endpoint, Object payloadaspojo, Map<String,String> headers){
+        RequestSpecification requestSpecification=  getRequestSpecification(endpoint,payloadaspojo,headers);
+        Response response = requestSpecification.post();
+        printRequestLogInReport(requestSpecification);
+        printResponseLogInReport(response);
+        return response;
+    }
 }

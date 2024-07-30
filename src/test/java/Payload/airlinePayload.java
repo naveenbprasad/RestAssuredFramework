@@ -1,7 +1,10 @@
 package Payload;
 
+import airlines.pojos.Airline;
 import net.datafaker.Faker;
-import org.apache.commons.lang3.RandomStringUtils;
+import utils.DateUtils;
+import utils.RandomDataGenerator;
+import utils.RandomDataTypeNames;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,14 +54,29 @@ public class airlinePayload {
     public static Map<String, Object> getCreateAirlinePayloadFromMap() {
         Faker faker = new Faker();
         Map<String, Object> payload = new HashMap<>();
-        payload.put("id", faker.number().digits(10));
-        payload.put("name", faker.name().firstName());
-        payload.put("country", faker.address().country());
-        payload.put("logo", RandomStringUtils.randomAlphanumeric(20));
-        payload.put("slogan",RandomStringUtils.randomAlphanumeric(20));
-        payload.put("head_quaters",faker.address().cityName());
-        payload.put("website", "https://"+RandomStringUtils.randomAlphanumeric(10)+".com");
-        payload.put("established", faker.number().numberBetween(1980,2023));
+        payload.put("id", RandomDataGenerator.getRandomNumber(10));
+        payload.put("name", RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.FIRSTNAME));
+        payload.put("country", RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.COUNTRY));
+        payload.put("logo", RandomDataGenerator.getRandomAlphabets(25));
+        payload.put("slogan", RandomDataGenerator.getRandomAlphabets(20));
+        payload.put("head_quaters", RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.CITYNAME));
+        payload.put("website", RandomDataGenerator.getRandomWebsiteName());
+        payload.put("established", RandomDataGenerator.getRandomNumber(1900, DateUtils.getCurrentyear()));
         return payload;
     }
+
+       public static Airline getCreateAirlinePayloadFromPojo(){
+           Airline airline=  Airline.builder().id(Integer.parseInt(RandomDataGenerator.getRandomNumber(10)))
+                   .name( RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.FIRSTNAME))
+                   .country(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.COUNTRY))
+                   .head_quaters(RandomDataGenerator.getRandomDataFor(RandomDataTypeNames.CITYNAME))
+                   .logo(RandomDataGenerator.getRandomAlphabets(25))
+                   .slogan(RandomDataGenerator.getRandomAlphabets(20))
+                   .website( RandomDataGenerator.getRandomWebsiteName())
+                   .established(RandomDataGenerator.getRandomNumber(1900, DateUtils.getCurrentyear())).build();
+
+            return  airline;
+
+       }
+
 }
